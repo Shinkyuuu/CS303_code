@@ -1,4 +1,4 @@
-# Recursively add pseudorandom integer values to a list until the period is complete
+# Recursively add pseudorandom (prandom) integer values to a list until the period is complete
 def recurseBBS(n, s, xList=[],  initX=0, prevX=-1, counter=0):
     # xList = list in which the prandom integers will be added to.
     # initX = initial X value.
