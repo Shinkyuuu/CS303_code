@@ -1,5 +1,6 @@
 import numpy as np
 
+
 # Print dictionary in the form of a table.
 def printTable(dictionary):
     for key, value in dictionary.items():
@@ -143,7 +144,7 @@ def userInput():
 
     # If polynomial is not irreducible
     if (not testReducibility(poly, m)):
-        print(" Polynomial is not irreducible")
+        print(" Polynomial is reducible")
         return 0
 
     # Turn poly into a list of integer coefficients
