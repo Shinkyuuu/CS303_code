@@ -144,7 +144,7 @@ def userInput():
 
 
     # If polynomial is not irreducible
-    if (not testReducibility(poly, m)):
+    if (not irredCheck(poly, m)):
         print(" Polynomial is reducible")
         return 0
 
