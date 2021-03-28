@@ -127,19 +127,20 @@ def strToPoly(polynomial):
 
 # Recieve and verify user inputs.
 def userInput():
-    # poly = alleged irreducible polynomial.
-    poly = strToPoly(input(" Polynomial: ").strip())
-
-    # Error Checking
-    while (any(poly.coefficients) == 0):
-        poly = strToPoly(input(" Try again: ").strip())
-
     # m = degree of irreducible polynomial
     m = int(input(" m: "))
 
     # Error Checking
-    while (m != (len(poly.coefficients) - 1)):
-        m = int(input(" m must equal the highest degree of the polynomial: "))
+    while (m <= 1):
+        m = int(input(" m must be greater than 1: "))
+
+    # poly = alleged irreducible polynomial.
+    poly = strToPoly(input(" Polynomial: ").strip())
+
+    # Error Checking
+    while ((any(poly.coefficients) == 0) or (len(poly.coefficients) != (m+1))):
+        poly = strToPoly(input(" Try again: ").strip())
+
 
     # If polynomial is not irreducible
     if (not testReducibility(poly, m)):
