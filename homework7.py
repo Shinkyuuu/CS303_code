@@ -12,7 +12,7 @@ def xor(poly1, poly2, m):
     # xoredPoly = the solution polynomial.
     xoredPoly = []
 
-    # XOR every element in each polynomial.
+    # XOR every coefficent in each polynomial.
     for i in range(0, len(poly1)):
         if poly1[i] == poly2[i]:
             xoredPoly.append(0)
@@ -27,7 +27,7 @@ def xor(poly1, poly2, m):
     return xoredPoly
 
 
-# Multiply polynomial in binary form by 2.
+# Multiply polynomial in binary form by two.
 def multiBy2(poly, irredPoly, m):
     polyCopy = poly.copy()
     polyCopy.append(0)
@@ -51,7 +51,7 @@ def binToStr(binList):
     return binStr
 
 
-# Generate the binary representation of one that's number of leading zeros match
+# Generate the binary representation of '1' that's number of leading zeros match
 # the degree of the irreducible polynomial.
 def genPrevBin(m):
     prevBin = []
@@ -103,7 +103,7 @@ def removeZeros(poly):
     return poly
 
 
-# Check if the user inputted polynomial is irreducible
+# Check if the user inputted polynomial is irreducible.
 def irredCheck(poly, m):
     # Divide it by every possible factor within the same field.
     for i in range(2, (2 ** m) + 1):
@@ -116,12 +116,12 @@ def irredCheck(poly, m):
 # Check if the user inputted polynomial divided by a
 # polynomial of a lesser degree has a remainder.
 def hasRemainder(poly1, poly2, m):
-    # irredPoly = denominator
+    # irredPoly = denominator.
     irredPoly = poly1.copy()
 
     while True:
-        # binPoly = numerator
-        # diff = difference in length
+        # binPoly = numerator.
+        # diff = difference in length.
         binPoly = poly2.copy()
         diff = abs(len(irredPoly) - len(binPoly))
 
@@ -136,8 +136,7 @@ def hasRemainder(poly1, poly2, m):
         # If both polynomials are equal, the remainder is zero.
         elif irredPoly == binPoly:
             return False
-        # If their lengths are the same, check if binPoly is greater
-        # than irredPoly.
+        # If their lengths are the same, check if binPoly is greater than irredPoly.
         else:
             for i in range(len(irredPoly) - 1, 0):
                 if irredPoly[i] < binPoly[i]:
@@ -156,28 +155,26 @@ def strToList(polynomial):
 # Receive and verify user inputs.
 def userInput():
     # poly = alleged irreducible polynomial.
-    poly = strToList(input(" Polynomial: ").strip())
+    poly = strToList(input(" Irreducible polynomial: ").strip())
 
-    # Error Checking
+    # Error Checking.
     while any(poly) == 0:
         poly = strToList(input(" Try again: ").strip())
 
-    # m = degree of irreducible polynomial
+    # m = degree of irreducible polynomial.
     m = int(input(" m: "))
 
-    # Error Checking
+    # Error Checking.
     while m != (len(poly) - 1):
-        m = int(input(" m must equal the highest degree of the polynomial: "))
+        m = int(input(" m must equal the highest degree of polynomial: "))
 
-    # If polynomial is not irreducible
+    # If polynomial is reducible.
     if not irredCheck(poly, m):
-        print(" Polynomial is reducible")
+        print("\n Polynomial is reducible")
         return 0
 
-    # Return the nonzero elems of GF(2^m)
+    # Return the nonzero elems of GF(2^m).
     return genElems(poly, m)
 
 
 userInput()
-
-
